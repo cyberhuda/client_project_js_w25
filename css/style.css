@@ -1,0 +1,277 @@
+/* I used the * universal selector to reset the default margin,
+padding, and box-sizing properties of all elements so the pages
+are consistent. I used border-box because most browsers' default
+is a default margin of 16px above and below. */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* I set the font-family to Arial, sans-serif, and the line-height
+to 1.6 for better readability. */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Header Grid Layout is my first grid layout I used to
+organize the skip link, UMSI images, logos, etc, and navigation menu.*/
+header {
+    display: grid;
+    grid-template-areas:
+        "skip-link skip-link"
+        "image nav";
+    grid-template-columns: 1fr auto;
+    gap: 15px;
+    padding: 20px;
+    background-color: #00274C;
+    color: white;
+}
+
+/* header {
+    display: grid;
+    grid-template-areas:
+        "skip-link skip-link"
+        "image nav";
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 20px;
+    background-color: #00274C;
+    color: white;
+} */
+/* I used underline to make the skip link more visible once tab'd to. */
+header a[href=""] {
+    grid-area: skip-link;
+    color: #FFCB05;
+    text-decoration: underline;
+}
+/* This image was already resized using PS in the HTML portion of the project.
+This uses grid to align it with the next navigation.*/
+
+header img {
+    grid-area: image;
+    /* width: 30%; */
+    max-width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+header nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+}
+
+/* I used flex-box to wrap the navigation menu items to the right of the
+image header.*/
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    align-items: right;
+    gap: 15px;
+}
+
+
+header nav ul li a {
+    display: flex;
+    color: #FFCB05;
+    text-decoration: none;
+    font-size: 1.1em; /*Makes it just a bit bigger than the skip*/
+    /* align-items: center; */
+    justify-content: center;
+}
+
+/* Main Content Grid Layout: this uses 2 or 3 columns depending on the screen size.
+On my device, it is 2 columns. */
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+main h1 {
+    grid-column: 1 / -1; /* Span across all columns */
+    font-size: 2.5em;
+    color: #00274C;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main h2 {
+    font-size: 2em;
+    color: #00274C;
+    margin-bottom: 15px;
+}
+
+main h3 {
+    font-size: 1.5em;
+    color: #00274C;
+    margin-bottom: 10px;
+}
+
+main h4 {
+    font-size: 1.3em;
+    color: #00274C;
+    margin-bottom: 10px;
+}
+
+main h5 {
+    font-size: 1.1em;
+    color: #00274C;
+    margin-bottom: 10px;
+}
+
+main p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+main ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+main ol li {
+    margin-bottom: 10px;
+}
+
+/* Grid for Articles: this uses 2 or 3 columns depending on the screen size.
+On my device, it is 2 columns. */
+main section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* I used flex box on this article so it lines up with the next article.
+I also used box-shadow following a YouTube tutorial so the sectioned
+articles look more distinct since lines/breaks do not look as good. */
+main article {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* I used flex box here to center this image instead of relying on media
+queries. */
+main article img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Footer Grid Layout: This example of grid organizes the footer so it's
+centered on  the page. */
+footer {
+    display: grid;
+    place-items: center;
+    background-color: #00274C;
+    color: white; /*This looks better as white instead of maize like the other contrast is. */
+    padding: 20px; /* I added padding because Chrome has a different margin used on body text which will throw the layout off.*/
+    text-align: center;
+}
+
+footer a {
+    color: #FFCB05;
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #FFCB05;
+}
+
+/* Hide the "Skip to main content" addressed from feedback from #2 but keep available for screen readers */
+header a[href=""] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+header a[href=""]:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* 404 Page Styling */
+.error {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;  /* Minimum 60% of viewport height */
+    text-align: center;
+    padding: 2rem;
+}
+
+.error h1 {
+    color: #00274C;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* .error-image {
+    max-width: 300px;
+    margin: 20px auto;
+    border-radius: 8px;
+} */
+
+.error ul {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.error li {
+    margin: 10px 0;
+}
+
+.error a {
+    color: #FFCB05;
+    text-decoration: underline;
+}
+
+/* Responsive Design: I commented this out for my previous iteration of the client project
+since we couldn't use it for deliverable #2. I used it to make the header
+more responsive for smaller tablets, and for the images more visible on larger screens/desktops. */
+
+@media (min-width: 768px) {
+    header {
+        grid-template-areas:
+            "skip-link"
+            "image"
+            "nav";
+        grid-template-columns: 1fr;
+    }
+}
